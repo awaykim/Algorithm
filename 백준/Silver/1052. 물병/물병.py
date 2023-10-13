@@ -1,6 +1,6 @@
 n, k = map(int, input().split())
-cnt = 0
+num = n
 while bin(n).count('1') > k:
-    n += 1
-    cnt += 1
-print(cnt)
+    exp = bin(n)[::-1].index('1')
+    n += 2**exp
+print(n - num)
