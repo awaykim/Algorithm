@@ -1,4 +1,4 @@
-# test
+# test ?
 
 # 1 요리가격
 def cook_cos(ingredients, cost):
