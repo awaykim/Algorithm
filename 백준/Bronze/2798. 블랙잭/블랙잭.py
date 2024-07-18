@@ -1,18 +1,10 @@
-def nCr(arr, r):
-    if r == 0:
-        return[[]]
-    res = []
-    for i in range(len(arr)):
-        element = arr[i]
-        rest = arr[i + 1:]
-        for c in nCr(rest, r-1):
-            res.append([element]+c)
-    return res
 n, m = map(int, input().split())
 cards = list(map(int, input().split()))
-group = nCr(cards, 3)
-opt = 0
-for g in group:
-    if sum(g) <= m and m - opt > m - sum(g):
-        opt = sum(g)
-print(opt)
+ans = 0
+for i in range(len(cards) - 2):
+    for j in range(i+1, len(cards) - 1):
+        for k in range(j+1, len(cards)):
+            s = cards[i] + cards[j] + cards[k]
+            if s <= m and ans < s:
+                ans = s
+print(ans)
