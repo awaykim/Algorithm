@@ -1,13 +1,14 @@
 n = int(input())
-
-words = [[] for _ in range(51)]
-
+# words = [[] for _ in range(51)]
+words = []
 for _ in range(n):
     word = input()
-    if word in words[len(word)]: continue
-    words[len(word)].append(word)
-
-for i in range(51):
-    words[i].sort()
-    for j in range(len(words[i])):
-        print(words[i][j])
+    words.append(word)
+# words.sort() 
+# words.sort(key=len)
+# words = sorted(words, key= lambda x : (len(x), x))
+# res = []
+res = list(set(words))
+res = sorted(res, key= lambda x : (len(x), x))
+for i in range(len(res)):
+    print(res[i])
