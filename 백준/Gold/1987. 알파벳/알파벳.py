@@ -1,28 +1,25 @@
 import sys
-r, c = map(int, sys.stdin.readline().split())
-board = [list(map(str, sys.stdin.readline())) for _ in range(r)]
-visited = [0] * 26
-global length
-length = 1
-def dfs(x,y, cnt):
-    global length
-    dx = [1, -1, 0, 0]
-    dy = [0, 0, 1, -1]
-    visited[ord(board[x][y]) - 65] = 1
+input = sys.stdin.readline 
+r, c = map(int, input().split())
+board = [list(input()) for _ in range(r)]
+visited = [False for _ in range(26)]
+dx = [0, 0, -1, 1]
+dy = [-1, 1, 0, 0]
+cnt = ans = 0
+visited[ord(board[0][0])-ord('A')] = True
+
+def dfs(x, y):
+    global cnt, ans
     cnt += 1
-    for i in range(4):
-        nx = x + dx[i]
-        ny = y + dy[i]
-        if -1 < nx < r and -1 < ny < c:
-            n = ord(board[nx][ny]) - 65
-            if not visited[n]:
-                dfs(nx, ny, cnt)       
-                length = max(length, cnt)
-                visited[n] = 0
+    for i, j in zip(dx, dy):
+        nx, ny = x+i, y+j
+        if 0 <= nx < r and 0 <= ny < c and not visited[ord(board[nx][ny])-ord('A')]:
+            visited[ord(board[nx][ny])-ord('A')] = True
+            dfs(nx, ny)
+            visited[ord(board[nx][ny])-ord('A')] = False
+    ans = max(ans, cnt)
+    cnt -= 1
     return
-dfs(0,0,1)
-print(length)
-
-
-
-        
+                
+dfs(0,0)
+print(ans)
