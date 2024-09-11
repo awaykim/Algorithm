@@ -10,11 +10,10 @@ table = [i for i in range(n+1)]
 def find(x): # x의 루트를 찾는다.
     if x == table[x]: 
         return x
-    else:
-        # x의 상위 노드로부터 루트를 찾는다
-        # table[x] = find(table[x])
-        # return table[x]
-        return find(table[x])
+    else: # x의 상위 노드로부터 루트를 찾는다
+        # 경로 압축을 통해 트리의 높이를 줄임 (루트 동일화)
+        table[x] = find(table[x]) 
+        return table[x]
 
 def union(x, y): # x와 y의 루트를 같게 만든다. (연결)
     x_root = find(x)
