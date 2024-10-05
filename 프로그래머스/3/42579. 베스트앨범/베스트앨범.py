@@ -13,7 +13,7 @@ def solution(genres, plays):
         gen_counts[genre] += play
         songs[genre].append((play, i))
     # 장르 정렬 
-    sorted_gen = sorted(gen_counts.keys(), key=lambda x: gen_counts[x], reverse=True)
+    sorted_gen = sorted(gen_counts.keys(), key=lambda x: -gen_counts[x])
     # 장르 내에서 정렬
     for genre in songs:
         songs[genre].sort(key=lambda x: (-x[0], x[1]))
