@@ -6,15 +6,13 @@ def solution(user_id, banned_id):
     mapped_id = [[] for _ in range(len(banned_id))]
     for i, ban in enumerate(banned_id):
         for j, user in enumerate(user_id):
-            flag = True
             if len(ban) != len(user):
                 continue
+            mapped_id[i].append(j)
             for k, ch_ban in enumerate(ban):
                 if ch_ban.isalnum() and ch_ban != user[k]:
-                    flag = False
-                    break
-            if flag: 
-                mapped_id[i].append(j)
+                    mapped_id[i].pop()
+                    break                
 
     q = deque()
     for i in mapped_id[0]:
