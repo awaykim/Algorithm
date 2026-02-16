@@ -18,8 +18,7 @@ for s in students:
     j = 0
     while num+j-1 < N and 0 <= num-j-1 and switches[num-j-1] == switches[num+j-1]:
       j += 1
-    if j:
-      j -= 1
+    j -= 1
     for k in range(num-j-1, num+j):
       switches[k] = 1 - switches[k]
 
