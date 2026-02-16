@@ -1,29 +1,25 @@
-n=int(input())
-arr=list(map(int,input().split()))
-LIS = [arr[0]]
+N = int(input())
+arr = list(map(int, input().split()))
+lis = [arr[0]]
 
-def binarySearch(e):
-    start = 0
-    end = len(LIS) - 1
-    
-    while start <= end:
-        mid = (start + end) // 2
-        
-        if LIS[mid] == e:
-            return mid
-        elif LIS[mid] < e:
-            start = mid + 1
-        else:
-            end = mid - 1
-            
-    return start
-
-
-for i in range(n):
-    if arr[i] > LIS[-1]:
-        LIS.append(arr[i])
+def find_place(n: int):
+  left = 0
+  right = len(lis) - 1
+  while left <= right:
+    mid = (left + right) // 2
+    if lis[mid] < n:
+      left = mid + 1
+    elif lis[mid] > n:
+      right = mid - 1
     else:
-        idx = binarySearch(arr[i])
-        LIS[idx] = arr[i]
+      return mid
+  return left
 
-print(len(LIS))
+for i in range(N):
+  if lis[-1] < arr[i]:
+    lis.append(arr[i])
+  elif lis[-1] > arr[i]:
+      place = find_place(arr[i])
+      lis[place] = arr[i]
+
+print(len(lis))
